@@ -7,4 +7,8 @@ class StaticPagesController < ApplicationController
 
 	def about
 	end
+	
+	def contact
+		puts "Hello world from contact page"
+	end
 end
