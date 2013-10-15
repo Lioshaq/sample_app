@@ -4,34 +4,33 @@ describe "StaticPages" do
 	let(:base_title) { "Ruby on Rails Tutorial Sample App" }
 
   describe "Home page" do
+		before { visit root_path }
     it "should have the content 'sample app'" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      visit '/static_pages/home'
-	    	page.should have_selector('h1', :text => 'Sample App')
+    	page.should have_selector('h1', :text => 'Rails')
 		end
 		it "should have the title Home" do
-			visit '/static_pages/home'
-			page.should have_selector('title', :text => "#{base_title} | Home")
+			page.should have_selector('title', :text => "#{base_title}")
 		end
   end
 	
 	describe "Help Page" do
+		before { visit help_path }
 		it "Should have the content help" do
-			visit '/static_pages/help'
 			page.should have_content('help')
 		end
 	end
 	
 	describe "About page" do
+	before { visit about_path }
 		it "should have content Abouts us" do	
-			visit '/static_pages/about'
 			page.should have_content('About us')
 		end
 	end
 	
 	describe "Contact page" do
 		it "should have title Contact" do
-			visit '/static_pages/contact' 
+			visit contact_path
 			page.should have_selector('title', :text => "Contact")
 		end
 	end
