@@ -19,8 +19,9 @@ describe User do
 	it { should respond_to(:email) }
 	it { should respond_to(:password_digest) }
 	it { should respond_to(:password) }
-	it { should respond_to(:passowrd_confirmation) }
+	it { should respond_to(:password_confirmation) }
 	it { should respond_to(:authenticate) } 
+
 	describe "when name is not present" do
 		before { @user.name = " "}
 		it { should_not be_valid }
@@ -80,11 +81,14 @@ describe User do
 	end 
 	
 	describe "return value of authe method" do
-		before { @user.save }	
+		before do
+			@user.save 
+		end	
 		let(:found_user) { User.find_by_email(@user.email) }
-		
 		describe 'with valid password' do
-			it { should == found_user.authenticate(@user.password) }
+			it do
+				should == found_user.authenticate(@user.password) 
+			end
 		end 
 
 		describe 'with invalid password' do
